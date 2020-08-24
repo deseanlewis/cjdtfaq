@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Data Element Dictionary (DED) &#8211; CJDT Pilot Initiative FAQ</title>
+	<atom:link href="https://deseanlewis.github.io/cjdtfaqpublic//cjdt-faq/category/ded/feed" rel="self" type="application/rss+xml" />
+	<link>http://deseanlewis.github.io/cjdtfaqpublic//</link>
+	<description></description>
+	<lastBuildDate>Fri, 31 Jul 2020 20:26:49 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.5</generator>
+	<item>
+		<title>How will the publication of data element dictionary versions be handled?</title>
+		<link>https://deseanlewis.github.io/cjdtfaqpublic//cjdt-faq/how-will-the-publication-of-data-element-dictionary-versions-be-handled</link>
+		
+		<dc:creator><![CDATA[faqadmin]]></dc:creator>
+		<pubDate>Mon, 15 Jun 2020 19:05:34 +0000</pubDate>
+				<guid isPermaLink="false">https://deseanlewis.github.io/cjdtfaqpublic//?post_type=epkb_post_type_1&#038;p=66</guid>
+
+					<description><![CDATA[Data element dictionary versions are only published upon approval of the CJJIS Council.]]></description>
+										<content:encoded><![CDATA[
+<p>Data element dictionary versions are only published upon approval of the CJJIS Council.</p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>There are differences between the allowed values in the FDLE data element dictionaries (DEDs) and the XSDs. Which is correct?</title>
+		<link>https://deseanlewis.github.io/cjdtfaqpublic//cjdt-faq/there-are-differences-between-the-allowed-values-in-the-fdle-data-element-dictionaries-deds-and-the-xsds-which-is-correct</link>
+		
+		<dc:creator><![CDATA[faqadmin]]></dc:creator>
+		<pubDate>Thu, 11 Jun 2020 19:00:07 +0000</pubDate>
+				<guid isPermaLink="false">https://deseanlewis.github.io/cjdtfaqpublic//knowledge-base/1-overview/</guid>
+
+					<description><![CDATA[Both documents are correct and should be used in combination. Differences in values are sometimes the result of illustrating user itnerface (UI) values versus coded/transmission values. For example with the Domestic Violence (DV) flag: The Yes/No values from DED description/example is what a user would expect to see on a screen in a system, i.e. [&#8230;]]]></description>
+										<content:encoded><![CDATA[<p>Both documents are correct and should be used in combination. Differences in values are sometimes the result of illustrating user itnerface (UI) values versus coded/transmission values.</p>
+<p>For example with the Domestic Violence (DV) flag: The Yes/No values from DED description/example is what a user would expect to see on a screen in a system, i.e. the UI value. However, the Guide for Use section of the DED shows the actual True/False boolean format type. Technicians should use the True/False values for XML report transmissions.</p>
+<p>For code lists, it is different. The XML/XSD contains a superset of codes; every code value may not apply to a system determinded by the reporting requirement. For example, CJDT data is limited to adults (or juveniles treated as adults) while OBTS/CCH data also includes juveniles. The XML/XSD contains a superset of code values that can be used for both CJDT and OBTS/CCH report transmissions. Therefore values like “waived to adult court”, that only apply to juveniles, would be used in transmissions for OBTS/CCH but not in transmissions for a CJDT record.</p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+	</channel>
+</rss>

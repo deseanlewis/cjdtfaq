@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	>
+
+<channel>
+	<title>Workload &#8211; CJDT Pilot Initiative FAQ</title>
+	<atom:link href="https://deseanlewis.github.io/cjdtfaqpublic//cjdt-faq/tag/workload/feed" rel="self" type="application/rss+xml" />
+	<link>http://deseanlewis.github.io/cjdtfaqpublic//</link>
+	<description></description>
+	<lastBuildDate>Fri, 31 Jul 2020 20:29:57 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.5</generator>
+	<item>
+		<title>How is the phrase &#8220;total popluation at end of year&#8221; defined regarding inmate counts?</title>
+		<link>https://deseanlewis.github.io/cjdtfaqpublic//cjdt-faq/how-is-the-phrase-total-popluation-at-end-of-year-defined-regarding-inmate-counts</link>
+		
+		<dc:creator><![CDATA[faqadmin]]></dc:creator>
+		<pubDate>Thu, 30 Jul 2020 20:19:14 +0000</pubDate>
+				<guid isPermaLink="false">https://deseanlewis.github.io/cjdtfaqpublic//?post_type=epkb_post_type_1&#038;p=136</guid>
+
+					<description><![CDATA[Full Question How is the phrase &#8220;total popluation at end of year&#8221; defined regarding inmate counts? Is it the total inmate population on 12/31 (snapshot on that date)? Does it correspond to a daily average for an entire year? Or, does it represent the total number of inmates processed in year? (For example, if on [&#8230;]]]></description>
+										<content:encoded><![CDATA[
+<h2>Full Question</h2>
+
+
+
+<p><strong>How is the phrase &#8220;total popluation at end of year&#8221; defined regarding inmate counts?<br><br>Is it the total inmate population on 12/31 (snapshot on that date)? Does it correspond to a daily average for an entire year? Or, does it represent the total number of inmates processed in year? (For example, if on 1/1 there are 1000 inmates and one inmate is processed each day, would the total population at the end of the year calculate to 1365?)</strong></p>
+
+
+
+<h2>Answer</h2>
+
+
+
+<p>Inmate population is another area where clarification from legislative staff was received, included in the Dictionary, and communicated through the conference call(s) established through the Florida Sheriffs Association (FSA).<br><br>Total Population of the County Detention Facility is defined as the “total number of inmates who have been in county detention facilities during the year. The reporting period for this data is July 1 through June 30.” Said differently, this is the number of unique inmates processed in the facility during the fiscal year. Per legislative guidance, this is not an average, nor is it a snapshot.<br><br>Legislative staff also confirmed that daily population is a headcount, not an average. There are no constraints anticipated on the time the County Corrections Daily Report can be provided (using the CJAdmin IEPD). The agencies are allowed to determine when the headcount is taken and reported based on thier business practices, as long as the process is consistent.</p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>Can annual data elements for jail administrators be sent in a separate data feed from monthly, weekly and daily reporting elements?</title>
+		<link>https://deseanlewis.github.io/cjdtfaqpublic//cjdt-faq/can-annual-data-elements-for-jail-administrators-be-sent-in-a-separate-data-feed-from-monthly-weekly-and-daily-reporting-elements</link>
+		
+		<dc:creator><![CDATA[faqadmin]]></dc:creator>
+		<pubDate>Thu, 30 Jul 2020 20:15:20 +0000</pubDate>
+				<guid isPermaLink="false">https://deseanlewis.github.io/cjdtfaqpublic//?post_type=epkb_post_type_1&#038;p=134</guid>
+
+					<description><![CDATA[In short, yes, annual data elements can be sent in a separate report from other elements and are only expected once annually. To elaborate, based on the IEPD design, elements can be segmented even further based on availability. The full details are available in the CJAdmin Information Exchange Package Documentation (IEPD). The Master Document identifies [&#8230;]]]></description>
+										<content:encoded><![CDATA[
+<p>In short, yes, annual data elements can be sent in a separate report from other elements and are only expected once annually.</p>
+
+
+
+<p>To elaborate, based on the IEPD design, elements can be segmented even further based on availability. The full details are available in the CJAdmin Information Exchange Package Documentation (IEPD). The Master Document identifies the minimum property sets (i.e. required data elements) as well has how data can be sent. The County Corrections Annual Report message has a cardinality of 0-1 for most elements. That means that a “report” can be submitted with the data available at the time. Elements with nulls are not reported and should instead be omitted from the generated XML report provided they are not required.</p>
+
+
+
+<p>For example, if by August 1, the June 30 officers and inmate data is not available, it should be omitted from the August report and sent at a later date. If on September 1, those elements are available they can be transmitted using a Delete/Insert report transaction code.</p>
+
+
+
+<p>The samples in the IEPD documentation show all elements associated with a report. The cardinality identifies the data that can be segmented and later sent using the Delete/Insert transaction code.</p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+		<item>
+		<title>Should administrative/workload data elements be reported for the calendar year or for the fiscal year?</title>
+		<link>https://deseanlewis.github.io/cjdtfaqpublic//cjdt-faq/should-administrative-workload-data-elements-be-reported-for-the-calendar-year-or-for-the-fiscal-year</link>
+		
+		<dc:creator><![CDATA[faqadmin]]></dc:creator>
+		<pubDate>Thu, 30 Jul 2020 20:14:22 +0000</pubDate>
+				<guid isPermaLink="false">https://deseanlewis.github.io/cjdtfaqpublic//?post_type=epkb_post_type_1&#038;p=132</guid>
+
+					<description><![CDATA[As stated in the data dictionaries, administrative reporting of staff, cases and inmates is based on the state fiscal year (i.e. June 30).]]></description>
+										<content:encoded><![CDATA[
+<p>As stated in the data dictionaries, administrative reporting of staff, cases and inmates is based on the state fiscal year (i.e. June 30).</p>
+]]></content:encoded>
+					
+		
+		
+			</item>
+	</channel>
+</rss>

@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en-US">
+
+	<head>
+
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+		
+
+			<script>
+		function trace(msg) {
+			function var_dump(arr, level) {
+				var dumped_text = "";
+				if (!level)
+					level = 0;
+
+				//The padding given at the beginning of the line.
+				var level_padding = "";
+				for ( var j = 0; j < level + 1; j++ )
+					level_padding += "    ";
+
+				if ( 'object' === typeof(arr) ) { //Array/Hashes/Objects
+					for ( var item in arr ) {
+						var value = arr[item];
+
+						if ( 'object' === typeof(value) ) { //If it is an array,
+							dumped_text += level_padding + "'" + item + "' ...\n";
+							dumped_text += var_dump(value, level + 1);
+						} else {
+							dumped_text += level_padding + "'" + item + "' => " + "(" + typeof(value) + ") \"" + value + "\"\n";
+						}
+					}
+				} else { //Stings/Chars/Numbers etc.
+					dumped_text = "(" + typeof(arr) + ") " + arr;
+					return dumped_text;
+				}
+				if ( 0 === level ) {
+					return '(object)' + String.fromCharCode(10) + dumped_text;
+				} else {
+					return dumped_text;
+				}
+			}
+			trace.trace_queue.push(var_dump(msg));
+		}
+		trace.trace_queue = []; // Don't pollute global namespace
+
+		// Try to keep order of operations by transmitting via queue
+		setInterval(function() {
+			if (0 === trace.trace_queue.length )
+				return;
+			var msg = trace.trace_queue.shift();
+
+			// Transmit message via XHR
+			var xmlhttp;
+			if ( window.XMLHttpRequest ) {
+				// code for IE7+, Firefox, Chrome, Opera, Safari
+				xmlhttp = new XMLHttpRequest();
+			} else {
+				// code for IE6, IE5
+				xmlhttp = new ActiveXObject( "Microsoft.XMLHTTP" );
+			}
+			var addy = window.location.toString();
+			var url = trace.getLeftMost( addy, "//" ) + "//";
+			url += trace.getLeftMost( trace.delLeftMost( addy + "/", "//"), "/") + "/ds-plugins/debug-trace/debug-trace.php";
+			xmlhttp.open( "GET", url + "?m=" + encodeURIComponent( msg.toString().substring( 0, 2000 ) ), true );
+			xmlhttp.send();
+		}, 50);
+
+		// Utility parsing functions in trace namespace
+		trace.delLeftMost = function( sSource, sFind ) {
+			for ( var i = 0; i < sSource.length; i = i + 1 ) {
+				var f = sSource.indexOf(sFind, i);
+				if ( -1 !== f ) {
+					return sSource.substr( f + sFind.length, sSource.length );
+					break;
+				}
+			}
+			return sSource;
+		};
+		trace.getLeftMost = function( sSource, sFind ) {
+			for ( var i = 0; i < sSource.length; i = i + 1 ) {
+				var f = sSource.indexOf( sFind, i );
+				if ( -1 !== f ) {
+					return sSource.substr( 0, f );
+					break;
+				}
+			}
+			return sSource;
+		};
+	</script>
+<title>Report Transmissions &ndash; CJDT Pilot Initiative FAQ</title>
+
+
+<link rel="alternate" type="application/rss+xml" title="CJDT Pilot Initiative FAQ &raquo; Feed" href="https://deseanlewis.github.io/feed">
+<link rel="alternate" type="application/rss+xml" title="CJDT Pilot Initiative FAQ &raquo; Comments Feed" href="https://deseanlewis.github.io/comments/feed">
+<link rel="alternate" type="application/rss+xml" title="CJDT Pilot Initiative FAQ &raquo; Report Transmissions Tag Feed" href="https://deseanlewis.github.io/cjdt-faq/tag/report-transmissions/feed">
+<link rel="stylesheet" id="wp-block-library-css" href="https://deseanlewis.github.io/wp-includes/css/dist/block-library/style.min.css?ver=5.5" media="all">
+<link rel="stylesheet" id="serverpress-css" href="https://deseanlewis.github.io/ds-plugins/ds-cli/fontello/css/serverpress.css?ver=5.5" media="all">
+<link rel="stylesheet" id="sp-animation-css" href="https://deseanlewis.github.io/ds-plugins/ds-cli/fontello/css/animation.css?ver=5.5" media="all">
+<link rel="stylesheet" id="epkb-public-styles-css" href="https://deseanlewis.github.io/wp-content/plugins/echo-knowledge-base/css/public-styles.min.css?ver=6.8.0" media="all">
+<link rel="stylesheet" id="twentytwenty-style-css" href="https://deseanlewis.github.io/wp-content/themes/twentytwenty/style.css?ver=1.4" media="all">
+<style id="twentytwenty-style-inline-css">
+.color-accent,.color-accent-hover:hover,.color-accent-hover:focus,:root .has-accent-color,.has-drop-cap:not(:focus):first-letter,.wp-block-button.is-style-outline,a { color: #6363f7; }blockquote,.border-color-accent,.border-color-accent-hover:hover,.border-color-accent-hover:focus { border-color: #6363f7; }button,.button,.faux-button,.wp-block-button__link,.wp-block-file .wp-block-file__button,input[type="button"],input[type="reset"],input[type="submit"],.bg-accent,.bg-accent-hover:hover,.bg-accent-hover:focus,:root .has-accent-background-color,.comment-reply-link { background-color: #6363f7; }.fill-children-accent,.fill-children-accent * { fill: #6363f7; }:root .has-background-color,button,.button,.faux-button,.wp-block-button__link,.wp-block-file__button,input[type="button"],input[type="reset"],input[type="submit"],.wp-block-button,.comment-reply-link,.has-background.has-primary-background-color:not(.has-text-color),.has-background.has-primary-background-color *:not(.has-text-color),.has-background.has-accent-background-color:not(.has-text-color),.has-background.has-accent-background-color *:not(.has-text-color) { color: #ffffff; }:root .has-background-background-color { background-color: #ffffff; }body,.entry-title a,:root .has-primary-color { color: #000000; }:root .has-primary-background-color { background-color: #000000; }cite,figcaption,.wp-caption-text,.post-meta,.entry-content .wp-block-archives li,.entry-content .wp-block-categories li,.entry-content .wp-block-latest-posts li,.wp-block-latest-comments__comment-date,.wp-block-latest-posts__post-date,.wp-block-embed figcaption,.wp-block-image figcaption,.wp-block-pullquote cite,.comment-metadata,.comment-respond .comment-notes,.comment-respond .logged-in-as,.pagination .dots,.entry-content hr:not(.has-background),hr.styled-separator,:root .has-secondary-color { color: #6d6d6d; }:root .has-secondary-background-color { background-color: #6d6d6d; }pre,fieldset,input,textarea,table,table *,hr { border-color: #dbdbdb; }caption,code,code,kbd,samp,.wp-block-table.is-style-stripes tbody tr:nth-child(odd),:root .has-subtle-background-background-color { background-color: #dbdbdb; }.wp-block-table.is-style-stripes { border-bottom-color: #dbdbdb; }.wp-block-latest-posts.is-grid li { border-top-color: #dbdbdb; }:root .has-subtle-background-color { color: #dbdbdb; }body:not(.overlay-header) .primary-menu > li > a,body:not(.overlay-header) .primary-menu > li > .icon,.modal-menu a,.footer-menu a, .footer-widgets a,#site-footer .wp-block-button.is-style-outline,.wp-block-pullquote:before,.singular:not(.overlay-header) .entry-header a,.archive-header a,.header-footer-group .color-accent,.header-footer-group .color-accent-hover:hover { color: #6363f7; }.social-icons a,#site-footer button:not(.toggle),#site-footer .button,#site-footer .faux-button,#site-footer .wp-block-button__link,#site-footer .wp-block-file__button,#site-footer input[type="button"],#site-footer input[type="reset"],#site-footer input[type="submit"] { background-color: #6363f7; }.social-icons a,body:not(.overlay-header) .primary-menu ul,.header-footer-group button,.header-footer-group .button,.header-footer-group .faux-button,.header-footer-group .wp-block-button:not(.is-style-outline) .wp-block-button__link,.header-footer-group .wp-block-file__button,.header-footer-group input[type="button"],.header-footer-group input[type="reset"],.header-footer-group input[type="submit"] { color: #ffffff; }#site-header,.footer-nav-widgets-wrapper,#site-footer,.menu-modal,.menu-modal-inner,.search-modal-inner,.archive-header,.singular .entry-header,.singular .featured-media:before,.wp-block-pullquote:before { background-color: #ffffff; }.header-footer-group,body:not(.overlay-header) #site-header .toggle,.menu-modal .toggle { color: #000000; }body:not(.overlay-header) .primary-menu ul { background-color: #000000; }body:not(.overlay-header) .primary-menu > li > ul:after { border-bottom-color: #000000; }body:not(.overlay-header) .primary-menu ul ul:after { border-left-color: #000000; }.site-description,body:not(.overlay-header) .toggle-inner .toggle-text,.widget .post-date,.widget .rss-date,.widget_archive li,.widget_categories li,.widget cite,.widget_pages li,.widget_meta li,.widget_nav_menu li,.powered-by-wordpress,.to-the-top,.singular .entry-header .post-meta,.singular:not(.overlay-header) .entry-header .post-meta a { color: #6d6d6d; }.header-footer-group pre,.header-footer-group fieldset,.header-footer-group input,.header-footer-group textarea,.header-footer-group table,.header-footer-group table *,.footer-nav-widgets-wrapper,#site-footer,.menu-modal nav *,.footer-widgets-outer-wrapper,.footer-top { border-color: #dbdbdb; }.header-footer-group table caption,body:not(.overlay-header) .header-inner .toggle-wrapper::before { background-color: #dbdbdb; }
+</style>
+<link rel="stylesheet" id="twentytwenty-print-style-css" href="https://deseanlewis.github.io/wp-content/themes/twentytwenty/print.css?ver=1.4" media="print">
+<script src="https://deseanlewis.github.io/wp-includes/js/jquery/jquery.js?ver=1.12.4-wp" id="jquery-js"></script>
+<script id="ds-cli-js-extra">
+var ds_cli = {"ajaxurl":"https:\/\/deseanlewis.github.io\/wp-admin\/admin-ajax.php","nonce":"0444eac136"};
+</script>
+<script src="https://deseanlewis.github.io/ds-plugins/ds-cli/js/ds-cli.js?ver=5.5" id="ds-cli-js"></script>
+<script id="epkb-public-scripts-js-extra">
+var epkb_vars = {"msg_try_again":"Please try again later.","error_occurred":"Error occurred (16)","not_saved":"Error occurred - configuration NOT saved (6).","unknown_error":"unknown error (17)","reload_try_again":"Please reload the page and try again.","save_config":"Saving configuration","input_required":"Input is required","reduce_name_size":"Warning: Please reduce your name size. Tab will only show first 25 characters","load_template":"Loading Template..."};
+</script>
+<script src="https://deseanlewis.github.io/wp-content/plugins/echo-knowledge-base/js/public-scripts.min.js?ver=6.8.0" id="epkb-public-scripts-js"></script>
+<script src="https://deseanlewis.github.io/wp-content/plugins/echo-knowledge-base/js/vendor/materialize.min.js?ver=6.8.0" id="epkb-materialize-js"></script>
+<script src="https://deseanlewis.github.io/wp-content/themes/twentytwenty/assets/js/index.js?ver=1.4" id="twentytwenty-js-js" async></script>
+<link rel="alternate" type="application/json" href="https://deseanlewis.github.io/wp-json/wp/v2/epkb_post_type_1_tag/14">
+
+<style type="text/css" id="epkb-advanced-style">
+		/* KB Core 
+		-----------------------------------------------------------------------*/
+		#epkb-content-container .epkb-nav-tabs .active:after {
+			border-top-color: #1e73be!important
+		}
+		#epkb-content-container .epkb-nav-tabs .active {
+			background-color: #1e73be!important
+		}
+		#epkb-content-container .epkb-nav-tabs .active .epkb-category-level-1,
+		#epkb-content-container .epkb-nav-tabs .active p {
+			color: #ffffff!important
+		}
+		#epkb-content-container .epkb-nav-tabs .active:before {
+			border-top-color: #000000!important
+		}		
+	</style>	<script>document.documentElement.className = document.documentElement.className.replace( 'no-js', 'js' );</script>
+	<style id="custom-background-css">
+body.custom-background { background-color: #ffffff; }
+</style>
+			<style id="wp-custom-css">
+			h2.entry-title { 
+	/*site search result headers*/
+	font-size: 36px;	
+}
+.entry-content {
+	/*site search result description*/
+	display:none;
+}
+a.page-numbers {
+	/*article page number links*/
+	font-size: medium;
+	padding-right: 12px;
+}
+.page-numbers.current {
+	/*article current page number*/
+	font-size: medium;
+	padding-right: 12px;
+}
+
+/*category results*/
+#eckb-categories-archive-container-v2 .eckb-article-title h2 a{
+	font-size: large;
+}
+.eckb-article-image{
+	
+}		</style>
+		
+	</head>
+
+	<body class="archive tax-epkb_post_type_1_tag term-report-transmissions term-14 custom-background wp-embed-responsive eckb-front-end-body enable-search-modal has-no-pagination not-showing-comments show-avatars footer-top-hidden reduced-spacing">
+
+		<a class="skip-link screen-reader-text" href="#site-content">Skip to the content</a>
+		<header id="site-header" class="header-footer-group" role="banner">
+
+			<div class="header-inner section-inner">
+
+				<div class="header-titles-wrapper">
+
+					
+						<button class="toggle search-toggle mobile-search-toggle" data-toggle-target=".search-modal" data-toggle-body-class="showing-search-modal" data-set-focus=".search-modal .search-field" aria-expanded="false">
+							<span class="toggle-inner">
+								<span class="toggle-icon">
+									<svg class="svg-icon" aria-hidden="true" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewbox="0 0 23 23"><path d="M38.710696,48.0601792 L43,52.3494831 L41.3494831,54 L37.0601792,49.710696 C35.2632422,51.1481185 32.9839107,52.0076499 30.5038249,52.0076499 C24.7027226,52.0076499 20,47.3049272 20,41.5038249 C20,35.7027226 24.7027226,31 30.5038249,31 C36.3049272,31 41.0076499,35.7027226 41.0076499,41.5038249 C41.0076499,43.9839107 40.1481185,46.2632422 38.710696,48.0601792 Z M36.3875844,47.1716785 C37.8030221,45.7026647 38.6734666,43.7048964 38.6734666,41.5038249 C38.6734666,36.9918565 35.0157934,33.3341833 30.5038249,33.3341833 C25.9918565,33.3341833 22.3341833,36.9918565 22.3341833,41.5038249 C22.3341833,46.0157934 25.9918565,49.6734666 30.5038249,49.6734666 C32.7048964,49.6734666 34.7026647,48.8030221 36.1716785,47.3875844 C36.2023931,47.347638 36.2360451,47.3092237 36.2726343,47.2726343 C36.3092237,47.2360451 36.347638,47.2023931 36.3875844,47.1716785 Z" transform="translate(-20 -31)"></path></svg>								</span>
+								<span class="toggle-text">Search</span>
+							</span>
+						</button>
+
+					
+					<div class="header-titles">
+
+						<div class="site-title faux-heading"><a href="https://deseanlewis.github.io/">CJDT Pilot Initiative FAQ</a></div>
+					</div>
+
+					<button class="toggle nav-toggle mobile-nav-toggle" data-toggle-target=".menu-modal" data-toggle-body-class="showing-menu-modal" aria-expanded="false" data-set-focus=".close-nav-toggle">
+						<span class="toggle-inner">
+							<span class="toggle-icon">
+								<svg class="svg-icon" aria-hidden="true" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" width="26" height="7" viewbox="0 0 26 7"><path fill-rule="evenodd" d="M332.5,45 C330.567003,45 329,43.4329966 329,41.5 C329,39.5670034 330.567003,38 332.5,38 C334.432997,38 336,39.5670034 336,41.5 C336,43.4329966 334.432997,45 332.5,45 Z M342,45 C340.067003,45 338.5,43.4329966 338.5,41.5 C338.5,39.5670034 340.067003,38 342,38 C343.932997,38 345.5,39.5670034 345.5,41.5 C345.5,43.4329966 343.932997,45 342,45 Z M351.5,45 C349.567003,45 348,43.4329966 348,41.5 C348,39.5670034 349.567003,38 351.5,38 C353.432997,38 355,39.5670034 355,41.5 C355,43.4329966 353.432997,45 351.5,45 Z" transform="translate(-329 -38)"></path></svg>							</span>
+							<span class="toggle-text">Menu</span>
+						</span>
+					</button>
+
+				</div>
+
+				<div class="header-navigation-wrapper">
+
+					
+							<nav class="primary-menu-wrapper" aria-label="Horizontal" role="navigation">
+
+								<ul class="primary-menu reset-list-style">
+
+								<li class="page_item page-item-19"><a href="https://deseanlewis.github.io/">CJDT FAQ</a></li>
+
+								</ul>
+
+							</nav>
+
+						
+						<div class="header-toggles hide-no-js">
+
+						
+							<div class="toggle-wrapper search-toggle-wrapper">
+
+								<button class="toggle search-toggle desktop-search-toggle" data-toggle-target=".search-modal" data-toggle-body-class="showing-search-modal" data-set-focus=".search-modal .search-field" aria-expanded="false">
+									<span class="toggle-inner">
+										<svg class="svg-icon" aria-hidden="true" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewbox="0 0 23 23"><path d="M38.710696,48.0601792 L43,52.3494831 L41.3494831,54 L37.0601792,49.710696 C35.2632422,51.1481185 32.9839107,52.0076499 30.5038249,52.0076499 C24.7027226,52.0076499 20,47.3049272 20,41.5038249 C20,35.7027226 24.7027226,31 30.5038249,31 C36.3049272,31 41.0076499,35.7027226 41.0076499,41.5038249 C41.0076499,43.9839107 40.1481185,46.2632422 38.710696,48.0601792 Z M36.3875844,47.1716785 C37.8030221,45.7026647 38.6734666,43.7048964 38.6734666,41.5038249 C38.6734666,36.9918565 35.0157934,33.3341833 30.5038249,33.3341833 C25.9918565,33.3341833 22.3341833,36.9918565 22.3341833,41.5038249 C22.3341833,46.0157934 25.9918565,49.6734666 30.5038249,49.6734666 C32.7048964,49.6734666 34.7026647,48.8030221 36.1716785,47.3875844 C36.2023931,47.347638 36.2360451,47.3092237 36.2726343,47.2726343 C36.3092237,47.2360451 36.347638,47.2023931 36.3875844,47.1716785 Z" transform="translate(-20 -31)"></path></svg>										<span class="toggle-text">Search</span>
+									</span>
+								</button>
+
+							</div>
+
+							
+						</div>
+						
+				</div>
+
+			</div>
+
+			<div class="search-modal cover-modal header-footer-group" data-modal-target-string=".search-modal">
+
+	<div class="search-modal-inner modal-inner">
+
+		<div class="section-inner">
+
+			<form role="search" aria-label="Search for:" method="get" class="search-form" action="https://deseanlewis.github.io/">
+	<label for="search-form-1">
+		<span class="screen-reader-text">Search for:</span>
+		<input type="search" id="search-form-1" class="search-field" placeholder="Search &hellip;" value="" name="s">
+	</label>
+	<input type="submit" class="search-submit" value="Search">
+</form>
+
+			<button class="toggle search-untoggle close-search-toggle fill-children-current-color" data-toggle-target=".search-modal" data-toggle-body-class="showing-search-modal" data-set-focus=".search-modal .search-field" aria-expanded="false">
+				<span class="screen-reader-text">Close search</span>
+				<svg class="svg-icon" aria-hidden="true" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewbox="0 0 16 16"><polygon fill="" fill-rule="evenodd" points="6.852 7.649 .399 1.195 1.445 .149 7.899 6.602 14.352 .149 15.399 1.195 8.945 7.649 15.399 14.102 14.352 15.149 7.899 8.695 1.445 15.149 .399 14.102"></polygon></svg>			</button>
+
+		</div>
+
+	</div>
+
+</div>
+
+		</header>
+
+		
+<div class="menu-modal cover-modal header-footer-group" data-modal-target-string=".menu-modal">
+
+	<div class="menu-modal-inner modal-inner">
+
+		<div class="menu-wrapper section-inner">
+
+			<div class="menu-top">
+
+				<button class="toggle close-nav-toggle fill-children-current-color" data-toggle-target=".menu-modal" data-toggle-body-class="showing-menu-modal" aria-expanded="false" data-set-focus=".menu-modal">
+					<span class="toggle-text">Close Menu</span>
+					<svg class="svg-icon" aria-hidden="true" role="img" focusable="false" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewbox="0 0 16 16"><polygon fill="" fill-rule="evenodd" points="6.852 7.649 .399 1.195 1.445 .149 7.899 6.602 14.352 .149 15.399 1.195 8.945 7.649 15.399 14.102 14.352 15.149 7.899 8.695 1.445 15.149 .399 14.102"></polygon></svg>				</button>
+
+				
+					<nav class="mobile-menu" aria-label="Mobile" role="navigation">
+
+						<ul class="modal-menu reset-list-style">
+
+						<li class="page_item page-item-19"><div class="ancestor-wrapper"><a href="https://deseanlewis.github.io/">CJDT FAQ</a></div></li>
+
+						</ul>
+
+					</nav>
+
+					
+			</div>
+
+			<div class="menu-bottom">
+
+				
+			</div>
+
+		</div>
+
+	</div>
+
+</div>
+
+	
+	<style>
+		
+			#eckb-categories-archive-container-v2 #eckb-categories-archive__body {
+					      grid-template-columns: 20% 80% 0 ;
+			}
+			#eckb-categories-archive-container-v2 #eckb-categories-archive__body__right-sidebar {
+					display:none;
+			}
+			#eckb-categories-archive-container-v2 #eckb-categories-archive__body__content {
+					grid-column-start: 2;
+					grid-column-end: 4;
+				}
+					#eckb-categories-archive-container-v2 {
+			width:1080px;
+		}
+		#eckb-categories-archive-container-v2 #eckb-categories-archive__body__left-sidebar {
+			padding: 10px;
+			background-color: #FFFFFF		}
+		#eckb-categories-archive-container-v2 #eckb-categories-archive__body__content {
+			padding: 10px;
+			background-color: #ffffff		}
+		/* Right Sidebar */
+		/*#eckb-categories-archive-container-v2 #eckb-categories-archive__body__right-sidebar {
+			padding: ;
+			background-color: 		}*/
+		/* Categories Archive Body - Content ----------------------------------------*/
+		#eckb-categories-archive-container-v2 .eckb-category-archive-title h1 {
+			font-size: 35px;
+		}
+		#eckb-categories-archive-container-v2 .eckb-article-container {
+			font-size: 15px;
+		}
+
+
+		/* Media Queries ------------------------------------------------------------*/
+		/* Grid Adjust Column sizes for smaller screen */
+		/*@media only screen and ( max-width: px ) {
+			#eckb-categories-archive-container-v2 #eckb-categories-archive__body {
+				grid-template-columns: 20% 60% 20%;
+			}
+		}*/
+
+		/* Grid becomes 1 Column Layout */
+		@media only screen and ( max-width: 1000px ) {
+
+			#eckb-categories-archive-container-v2 {
+				width:100%;
+			}
+			#eckb-categories-archive-container-v2 #eckb-categories-archive__body {
+				grid-template-columns: 0 100% 0;
+			}
+
+			#eckb-categories-archive-container-v2 #eckb-categories-archive__body__content {
+				grid-column-start: 1;
+				grid-column-end: 4;
+			}
+			#eckb-categories-archive-container-v2 #eckb-categories-archive__body__left-sidebar {
+				grid-column-start: 1;
+				grid-column-end: 4;
+			}
+			#eckb-categories-archive-container-v2 #eckb-categories-archive__body__right-sidebar {
+				grid-column-start: 1;
+				grid-column-end: 4;
+			}
+		}
+	</style>	
+	
+
+	
+	<div id="eckb-categories-archive-container-v2" class="eckb-category-archive-reset eckb-categories-archive-container-v2">
+
+		
+		<div id="eckb-categories-archive__header"></div>
+
+		
+		<div id="eckb-categories-archive__body">
+
+			
+			<div id="eckb-categories-archive__body__left-sidebar">
+		<style>
+			.eckb-acll__title {
+				color:#666666;
+			}
+			.eckb-article-cat-layout-list {
+				background-color:#fcfcfc;
+				font-size:14px;
+			}
+			.eckb-article-cat-layout-list a {
+				font-size:14px;
+			}
+			.eckb-acll__cat-item__name {
+				color:#2b98e5;
+			}
+			.eckb-acll__cat-item__count {
+				color:#000000;
+				background-color:#ffffff;
+				border:solid 1px #cccccc;
+			}
+		</style>
+
+		<div class="eckb-article-cat-layout-list eckb-article-cat-layout-list-reset">
+			<div class="eckb-article-cat-layout-list__inner">
+				<div class="eckb-acll__title">Categories</div>
+				<ul>						
+						<li class="eckb--acll__cat-item ">
+							<a href="https://deseanlewis.github.io/cjdt-faq/category/ded">
+								<div>
+									<span class="eckb-acll__cat-item__name">
+										Data Element Dictionary (DED)									</span>
+								</div>
+								<div>
+									<span class="eckb-acll__cat-item__count">
+										2									</span>
+								</div>
+							</a>
+						</li>						
+						<li class="eckb--acll__cat-item ">
+							<a href="https://deseanlewis.github.io/cjdt-faq/category/elements">
+								<div>
+									<span class="eckb-acll__cat-item__name">
+										Data Element Specific									</span>
+								</div>
+								<div>
+									<span class="eckb-acll__cat-item__count">
+										8									</span>
+								</div>
+							</a>
+						</li>						
+						<li class="eckb--acll__cat-item ">
+							<a href="https://deseanlewis.github.io/cjdt-faq/category/genfaq">
+								<div>
+									<span class="eckb-acll__cat-item__name">
+										General									</span>
+								</div>
+								<div>
+									<span class="eckb-acll__cat-item__count">
+										3									</span>
+								</div>
+							</a>
+						</li>						
+						<li class="eckb--acll__cat-item ">
+							<a href="https://deseanlewis.github.io/cjdt-faq/category/iepd">
+								<div>
+									<span class="eckb-acll__cat-item__name">
+										Information Exchange Package Documentation (IEPD)									</span>
+								</div>
+								<div>
+									<span class="eckb-acll__cat-item__count">
+										5									</span>
+								</div>
+							</a>
+						</li>						
+						<li class="eckb--acll__cat-item ">
+							<a href="https://deseanlewis.github.io/cjdt-faq/category/niem">
+								<div>
+									<span class="eckb-acll__cat-item__name">
+										NIEM/XSD/XML									</span>
+								</div>
+								<div>
+									<span class="eckb-acll__cat-item__count">
+										7									</span>
+								</div>
+							</a>
+						</li>						
+						<li class="eckb--acll__cat-item ">
+							<a href="https://deseanlewis.github.io/cjdt-faq/category/transmission">
+								<div>
+									<span class="eckb-acll__cat-item__name">
+										Report Transmission									</span>
+								</div>
+								<div>
+									<span class="eckb-acll__cat-item__count">
+										12									</span>
+								</div>
+							</a>
+						</li>						
+						<li class="eckb--acll__cat-item ">
+							<a href="https://deseanlewis.github.io/cjdt-faq/category/validation">
+								<div>
+									<span class="eckb-acll__cat-item__name">
+										Testing &amp; Validation									</span>
+								</div>
+								<div>
+									<span class="eckb-acll__cat-item__count">
+										1									</span>
+								</div>
+							</a>
+						</li>						
+						<li class="eckb--acll__cat-item ">
+							<a href="https://deseanlewis.github.io/cjdt-faq/category/uaa">
+								<div>
+									<span class="eckb-acll__cat-item__name">
+										Uniform Arrest Affidavit (UAA/FAA)									</span>
+								</div>
+								<div>
+									<span class="eckb-acll__cat-item__count">
+										2									</span>
+								</div>
+							</a>
+						</li>						
+				</ul>
+			</div>
+		</div>			</div>
+
+			
+			<div id="eckb-categories-archive__body__content">
+
+				
+				<div id="eckb-categories-archive__body__content__header">
+	 <header class="eckb-category-archive-header">
+		 <div class="eckb-category-archive-title">
+			 <h1>
+				 <span class="eckb-category-archive-title-icon epkbfa epkbfa-folder-open"></span>
+				 <span class="eckb-category-archive-title-desc"></span>
+				 <span class="eckb-category-archive-title-name">Report Transmissions</span>
+			 </h1>
+		 </div>            
+		 <div class="eckb-category-archive-breadcrumbs">	
+<div class="eckb-breadcrumb" style="padding-top: 4px; padding-right: 0px; padding-bottom: 4px; padding-left: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 20px; margin-left: 0px; font-size: 14px;">
+	<div class="eckb-breadcrumb-label"></div>
+	<ul class="eckb-breadcrumb-nav">       <li>	<span class="eckb-breadcrumb-link"><a tabindex="0" href="https://deseanlewis.github.io/"><span style="color: #1e73be;">Main</span></a><span class="eckb-breadcrumb-link-icon ep_font_icon_arrow_carrot_right"></span>	</span></li><li>	<span class="eckb-breadcrumb-link"><span aria-current="page" style="color: #1e73be;">Report Transmissions</span>	</span></li>
+	</ul>
+</div>          		 </div>	
+	 </header>   </div>
+
+				
+				<div id="eckb-categories-archive__body__content__body">
+	<main class="eckb-category-archive-main eckb-category-archive-style-3">   
+			<article class="eckb-article-container" id="post-64">
+				<div class="eckb-article-image">
+									</div>
+				<div class="eckb-article-header">
+					<div class="eckb-article-title">
+						<h2><a href="https://deseanlewis.github.io/cjdt-faq/will-agencies-operating-in-multiple-counties-e-g-public-defenders-need-to-provide-a-separate-report-for-each-county">Will agencies operating in multiple counties (e.g. Public Defenders) need to provide a separate report for each county?</a></h2>
+						<span class="eckb-article-title-icon epkbfa epkbfa-file-text-o"></span>
+					</div>
+					<div class="eckb-article-metadata">
+						<ul>
+							<li class="eckb-article-posted-on"><span class="eckb-article-meta-name">Date:</span> <time class="entry-date" datetime="2020-06-15T19:04:33+00:00">June 15, 2020</time></li>
+							<li class="eckb-article-byline"><span class="eckb-article-meta-name">By:</span> faqadmin</li>
+							<li class="eckb-article-categories"><span class="eckb-article-meta-name">Categories:</span> <a href="https://deseanlewis.github.io/cjdt-faq/category/transmission" rel="category tag">Report Transmission</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="eckb-article-body">					    
+						<a href="https://deseanlewis.github.io/cjdt-faq/will-agencies-operating-in-multiple-counties-e-g-public-defenders-need-to-provide-a-separate-report-for-each-county" class="eckb-article-read-more">
+							<div class="eckb-article-read-more-text">Read More</div>
+							<div class="eckb-article-read-more-icon epkbfa epkbfa-long-arrow-right"></div>
+						</a>    
+				</div>
+				<div class="eckb-article-footer"></div>
+			</article>			    
+	</main> </div>
+
+				
+				<div id="eckb-categories-archive__body__content__footer"></div>
+
+			</div>
+
+			
+			<div id="eckb-categories-archive__body__right-sidebar"></div>
+
+		</div>
+
+		
+		<div id="eckb-categories-archive__footer"></div>
+
+	</div>      			<footer id="site-footer" role="contentinfo" class="header-footer-group">
+
+				<div class="section-inner">
+
+					<div class="footer-credits">
+
+						<p class="footer-copyright">&copy;
+							2020							<a href="https://deseanlewis.github.io/">CJDT Pilot Initiative FAQ</a>
+						</p>
+
+						<p class="powered-by-wordpress">
+							<a href="https://wordpress.org/">
+								Powered by WordPress							</a>
+						</p>
+
+					</div>
+
+					<a class="to-the-top" href="#site-header">
+						<span class="to-the-top-long">
+							To the top <span class="arrow" aria-hidden="true">&uarr;</span>						</span>
+						<span class="to-the-top-short">
+							Up <span class="arrow" aria-hidden="true">&uarr;</span>						</span>
+					</a>
+
+				</div>
+
+			</footer>
+
+			<script>
+	/(trident|msie)/i.test(navigator.userAgent)&&document.getElementById&&window.addEventListener&&window.addEventListener("hashchange",function(){var t,e=location.hash.substring(1);/^[A-z0-9_-]+$/.test(e)&&(t=document.getElementById(e))&&(/^(?:a|select|input|button|textarea)$/i.test(t.tagName)||(t.tabIndex=-1),t.focus())},!1);
+	</script>
+	
+	</body>
+</html>
